@@ -1,0 +1,37 @@
+{
+  "project" : {
+    "name" : "<%project_name%>",
+    "after" : [
+      <%after_list%>
+    ],
+  <%if(exename)%>
+  "exename" : "<%exename%>",
+  <%endif%>
+  <%if(sharedname)%>
+  "sharedname" : "<%sharedname%>",
+  <%endif%>
+  <%if(staticname)%>
+  "staticname" : "<%staticname%>",
+  <%endif%>
+
+    "exeout" : "<%exeout%>",
+    "libout" : "<%libout%>",
+
+    "requires" : [
+      <%foreach(requires)%>
+        "<%require%>"<%fornotlast(",")%>
+      <%endfor%>
+    ],
+    "avoids" : [
+      <%foreach(avoids)%>
+        "<%avoid%>"<%fornotlast(",")%>
+      <%endfor%>
+    ],
+    "buildFiles" : "<%build_files%>",
+    "inheritance" : {
+      <%foreach(inheritance_nodes)%>
+        <%inheritance_node%><%fornotlast(",")%>
+      <%endfor%>
+    }
+  }
+}

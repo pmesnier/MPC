@@ -1,0 +1,114 @@
+,
+    "settings" : {
+      "after" : "<%after%>",
+      "avoids" : "<%avoids%>",
+      "custom_only" : "<%custom_only%>",
+      "dllout" : "<%dllout%>",
+      "dynamicflags" : "<%dynamicflags%>",
+      "exename" : "<%exename%>",
+      "includes" : "<%includes%>",
+      "exeout" : "<%exeout%>",
+      "libout" : "<%libout%>",
+      "libpaths" : "<%libpaths%>",
+      "libs" : [
+        <%foreach(libs)%>
+          <%libname_prefix%><%lib%><%fornotlast(",")%>
+        <%endfor%>"
+      ],
+      "lit_libs" : "<%lit_libs%>",
+      "macros" : "<%macros%>",
+      "pch_header" : "<%pch_header%>",
+      "pch_source" : "<%pch_source%>",
+      "prebuild" : "<%prebuild%>",
+      "postbuild" : "<%postbuild%>",
+      "postclean" : "<%postclean%>",
+      "pure_libs" : "<%pure_libs%>",
+      "recurse" : "<%recurse%>",
+      "requires" : "<%requires%>",
+      "sharedname" : "<%libname_prefix%><%sharedname%>",
+      "staticflags" : "<%staticflags%>",
+      "staticname" : "<%libname_prefix%><%staticname%>",
+      "tagname *" : "<%tagname%>",
+      "tagchecks *" : "<%tagchecks%>",
+      "version" : "<%version%>"
+    },
+    "files" : {
+      "Source Files" : [
+        <%source_files%>
+      ],
+      "Header Files" : [
+        <%header_files%>
+      ],
+      "Inline Files" : [
+        <%inline_files%>
+      ],
+      "Template Files" : [
+        <%template_files%>
+      ],
+      "Resource Files" : [
+        <%resource_files%>
+      ],
+      "Documentation Files" : [
+        <%documentation_files%>
+      ],
+      <%foreach(custom_types)%>
+        "<%ucw(custom_type)%>" : [
+          <%custom_type->input_files%>
+        ],
+      <%endfor%>
+
+    }
+  }
+}
+
+<tbody>
+  <%comment("common to all mpt files")%>
+  <%if(pch_defines)%>
+          "pch_defines" = "<%pch_defines%>",
+  <%endif%>
+  <%foreach(configurations)%>
+    <tr><td class="sub" colspan="2">Configuration: <%configuration%></td></tr>
+    <%comment("borland, nmake, va4, em3, vc6, vc7 and vc71 mpt files")%>
+    <%if(defines || common_defines)%>
+            "defines" = "<%defines%> <%common_defines%>",
+    <%endif%>
+    <%if(compile_flags)%>
+            "compile_flags" = "<%compile_flags%>",
+    <%endif%>
+    <%comment("make mpt files")%>
+    <%if(cxx)%>
+            "cxx" = "<%cxx%>",
+    <%endif%>
+    <%if(compilerflags)%>
+            "compilerflags" = "<%compilerflags%>",
+    <%endif%>
+    <%if(linkflags)%>
+            "linkflags" = "<%linkflags%>",
+    <%endif%>
+    <%foreach(platforms)%>
+      <tr><td class="subsub" colspan="2">Platform: <%platform%></td></tr>
+      <%if(shflags)%>
+              "shflags" = "<%shflags%>",
+      <%endif%>
+      <%if(ldlibs)%>
+              "ldlibs" = "<%ldlibs%>",
+      <%endif%>
+      <%if(extracppflags)%>
+              "extracppflags" = "<%extracppflags%>",
+      <%endif%>
+      <%if(dll_ext)%>
+              "dll_ext" = "<%dll_ext%>",
+      <%endif%>
+      <%comment("em3 mpt files")%>
+      <%if(cpu_id)%>
+              "cpu_id" = "<%cpu_id%>",
+      <%endif%>
+      <%if(platform_id)%>
+              "platform_id" = "<%platform_id%>",
+      <%endif%>
+      <%if(cpu_defines)%>
+              "cpu_defines" = "<%cpu_defines%>",
+      <%endif%>
+    <%endfor%>
+  <%endfor%>
+<%endif%>
